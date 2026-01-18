@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aurel 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Poppins,sans-serif;
+  background:radial-gradient(circle at top,#1a0026,#000);
+  color:white;
+  overflow:hidden;
+}
+
+/* ===== STARS ===== */
+.stars span{
+  position:fixed;
+  width:2px;height:2px;
+  background:white;
+  animation:twinkle 3s infinite;
+}
+@keyframes twinkle{50%{opacity:.3}}
+
+/* ===== SCENE ===== */
+.scene{
+  display:none;
+  height:100vh;
+  padding:40px 18px;
+  text-align:center;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  animation:fade 1.2s;
+}
+.scene.active{display:flex}
+@keyframes fade{
+  from{opacity:0;transform:scale(.95)}
+  to{opacity:1;transform:scale(1)}
+}
+
+/* ===== TEXT ===== */
+.title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,8vw,3.4rem);
+  margin-bottom:18px;
+}
+.card{
+  max-width:720px;
+  background:rgba(255,255,255,.08);
+  padding:26px;
+  border-radius:22px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 40px rgba(255,77,109,.45);
+  font-size:clamp(.95rem,3.8vw,1.1rem);
+  line-height:1.9;
+  text-align:left;
+}
+
+/* ===== HEART BUTTON ===== */
+.heart-btn{
+  margin-top:32px;
+  width:70px;height:70px;
+  background:#ff4d6d;
+  position:relative;
+  transform:rotate(-45deg);
+  cursor:pointer;
+  box-shadow:0 0 30px #ff4d6d;
+  animation:pulse 1.5s infinite;
+}
+.heart-btn::before,
+.heart-btn::after{
+  content:"";
+  width:70px;height:70px;
+  background:#ff4d6d;
+  border-radius:50%;
+  position:absolute;
+}
+.heart-btn::before{top:-35px;left:0}
+.heart-btn::after{left:35px;top:0}
+@keyframes pulse{50%{transform:rotate(-45deg) scale(1.1)}}
+
+/* ===== GALLERY ===== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:16px;
+  max-width:720px;
+}
+.gallery img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.7);
+}
+
+/* ===== REAL CAKE ===== */
+.cake-wrap{
+  position:relative;
+  width:240px;
+  height:260px;
+}
+
+/* layers */
+.cake-bottom{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:80px;
+  background:linear-gradient(#ffb3c6,#ff4d6d);
+  border-radius:22px;
+}
+.cake-middle{
+  position:absolute;
+  bottom:70px;
+  left:20px;
+  width:200px;
+  height:65px;
+  background:linear-gradient(#ffd6e0,#ff758f);
+  border-radius:20px;
+}
+.cake-top{
+  position:absolute;
+  bottom:125px;
+  left:55px;
+  width:130px;
+  height:55px;
+  background:linear-gradient(#fff,#ffe6eb);
+  border-radius:18px;
+}
+
+/* drip */
+.cake-top::after{
+  content:"";
+  position:absolute;
+  top:40px;
+  width:100%;
+  height:15px;
+  background:#fff;
+  border-radius:0 0 12px 12px;
+}
+
+/* ribbon */
+.ribbon{
+  position:absolute;
+  bottom:30px;
+  left:0;
+  width:100%;
+  height:20px;
+  background:#fff;
+}
+.bow{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:30px;height:20px;
+}
+.bow::before,.bow::after{
+  content:"";
+  position:absolute;
+  width:18px;height:18px;
+  background:#ff4d6d;
+  border-radius:50%;
+}
+.bow::before{left:-10px}
+.bow::after{right:-10px}
+
+/* candle */
+.candle{
+  position:absolute;
+  bottom:180px;
+  left:50%;
+  transform:translateX(-50%);
+  width:10px;height:45px;
+  background:repeating-linear-gradient(
+    45deg,#fff,#fff 4px,#ff4d6d 4px,#ff4d6d 8px
+  );
+  border-radius:4px;
+}
+.flame{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:14px;height:20px;
+  background:radial-gradient(circle,#fff,#ffb703,#ff7b00);
+  border-radius:50%;
+  animation:flicker .15s infinite;
+}
+@keyframes flicker{
+  50%{transform:translateX(-50%) scale(.85);opacity:.8}
+}
+
+/* ===== MUSIC ===== */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff4d6d;
+  border:none;
+  color:white;
+  padding:12px 18px;
+  border-radius:30px;
+  box-shadow:0 0 20px #ff4d6d;
+}
+
+/* ===== FIREWORK ===== */
+.firework{
+  position:fixed;
+  width:6px;height:6px;
+  border-radius:50%;
+  animation:boom 1.5s linear;
+}
+@keyframes boom{
+  to{transform:translate(var(--x),var(--y));opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- SCENE 1 -->
+<div class="scene active">
+  <div class="title">For You, Aurel 💖</div>
+  <p id="dateText"></p>
+  <div class="heart-btn" onclick="nextScene()"></div>
+</div>
+
+<!-- SCENE 2 -->
+<div class="scene">
+  <div class="title">🎉 Happy Birthday 🎉</div>
+  <div class="card">
+    Selamat ulang tahun buat orang yang paling sering bikin aku senyum tanpa sadar  
+    Sejak kamu ada, banyak hal sederhana jadi terasa lebih berarti,  
+    Aku suka caramu hadir, meski aku banyak salahh ke kamu
+
+    <br><br>
+    Aku bangga bisa jalan sejauh ini bareng kamu, 
+    Selamat ulang tahun, semoga aku masih bisa nemenin kamu di banyak hari ke depan 🤍
+
+    <br><br>
+    lopyuuu Aurel gemasss ✨💖
+  </div>
+  <div class="heart-btn" onclick="nextScene()"></div>
+</div>
+
+<!-- SCENE 2 -->
+<div class="scene">
+  <div class="title">🎉 Harapan 🎉</div>
+  <div class="card">
+    Semoga setiap usaha kamu selalu nemuin jalannya.  
+    Semoga mimpi-mimpimu pelan-pelan jadi nyata.  
+    Semoga kebahagiaan selalu nemuin kamu, di mana pun kamu berdiri.
+
+    <br><br>
+    Semoga di usia baru ini kamu selalu diberi kesehatan,  
+    Semoga kita tumbuh bareng, bukan saling ninggalin.
+
+    <br><br>
+    Semoga suatu hari nanti, aku masih ada di samping kamu saat kamu sampai di tujuanmu 🤍
+  </div>
+  <div class="heart-btn" onclick="nextScene()"></div>
+</div>
+
+<!-- SCENE 2 -->
+<div class="scene">
+  <div class="title">🎉 Sorryyy 🎉</div>
+  <div class="card">
+    Maaf ya kalau aku belum selalu jadi pasangan yang sempurna buat kamu.  
+    Maaf kalau aku kadang egois dan lupa ngelihat dari sudut pandang kamu.
+    Maaf kalau aku pernah bikin kamu kecewa, itu bukan niatku.
+
+    <br><br>
+    Maaf ya kalau aku belum jadi pasangan yang paling kamu harapkan.
+    Aku benar-benar minta maaf dan ingin terus memperbaiki diri.  
+
+    <br><br>
+    Tapi satu hal yang pasti, aku tulus sayang sama kamu dan nggak mau nyakitin kamu 🤍
+  </div>
+  <div class="heart-btn" onclick="nextScene()"></div>
+</div>
+
+<!-- SCENE 3 -->
+<div class="scene">
+  <div class="title">📸 Kenangan</div>
+  <div class="gallery">
+    <div class="photo">
+      <img src="foto1.jpg">
+      <div class="caption">aurell kecilll ✨</div>
+    </div>
+    <div class="photo">
+      <img src="foto2.jpg">
+      <div class="caption">aurell remaja 💖</div>
+    </div>
+    <div class="photo">
+      <img src="foto3.jpg">
+      <div class="caption">aurelll dewasa 🌸</div>
+    </div>
+  </div>
+  <div class="heart-btn" onclick="nextScene()"></div>
+</div>
+
+<!-- SCENE 4 -->
+<div class="scene">
+  <div class="title">🎂 Make a Wish</div>
+
+  <div class="cake-wrap">
+    <div class="cake-bottom"></div>
+    <div class="ribbon"></div>
+    <div class="bow"></div>
+
+    <div class="cake-middle"></div>
+    <div class="cake-top"></div>
+
+    <div class="candle">
+      <div class="flame" id="flame"></div>
+    </div>
+  </div>
+
+  <div class="heart-btn" onclick="blow()"></div>
+</div>
+
+<audio id="music" loop>
+  <source src="lagu.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" onclick="toggleMusic()">🎶 Lagu</button>
+
+<script>
+document.getElementById("dateText").innerText = "19 JANUARI 2026"
+
+/* stars */
+for(let i=0;i<120;i++){
+ let s=document.createElement("span");
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ s.style.animationDelay=Math.random()*3+"s";
+ document.querySelector(".stars").appendChild(s);
+}
+
+let index=0;
+const scenes=document.querySelectorAll(".scene");
+const music=document.getElementById("music");
+
+function nextScene(){
+ scenes[index].classList.remove("active");
+ index++;
+ if(index<scenes.length) scenes[index].classList.add("active");
+ music.play();
+ fireworks();
+}
+
+function toggleMusic(){
+ music.paused ? music.play() : music.pause();
+}
+
+function blow(){
+ document.getElementById("flame").style.display="none";
+ fireworks();
+}
+
+function fireworks(){
+ for(let i=0;i<40;i++){
+  let f=document.createElement("div");
+  f.className="firework";
+  f.style.left="50vw";
+  f.style.top="50vh";
+  f.style.background=`hsl(${Math.random()*360},100%,70%)`;
+  f.style.setProperty("--x",(Math.random()*500-250)+"px");
+  f.style.setProperty("--y",(Math.random()*500-250)+"px");
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),1500);
+ }
+}
+</script>
+
+</body>
+</html>
